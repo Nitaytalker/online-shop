@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College</title>
+    <style>
+        form {
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="courseinputs">
+        <h2>New Course</h2>
+        <label>new course:</label>
+        <input type="text"><br>
+        <label>course Id:</label>
+        <input type="text"><br>
+        <button onclick="newCourse(event)">Add Course</button><br>
+    </form>
+
+    <form id="studentinputs">
+        <h2>New Student</h2>
+        <label>Student Name:</label>
+        <input type="text"><br>
+        <label>email:</label>
+        <input type="text"><br>
+        <label>Student Id:</label>
+        <input type="text"><br>
+
+        <button onclick="newStudent(event)">Add Student</button><br>
+    </form>
+
+
+    <form id="addstudentcourse">
+        <h2>Add Course To Student</h2>
+        <label>Student ID:</label>
+        <input type="text"><br>
+        <label>Add Course ID:</label>
+        <input type="text"><br>
+        <button onclick="addToStudentCourse(event)">OK</button><br>
+    </form>
+
+    <table id='forstudent'>
+
+    </table>
+
+
+
+    <script>
+        class Student {
+            constructor(name, email, studentId, coursesArray = []) {
+                this.name = name;
+                this.email = email;
+                this.studentId = studentId;
+                this.coursesArray = coursesArray;
+            }
+            addNewCourse(CourseId) {
+                this.coursesArray.push(CourseId);
+            }
+            addCourseById(studentId, CourseId) {
+                this.studentId.indexOf(studentId)
+            }
+            print1Student(){
+                
+                printline.innerHTML +=`  <tr> <th> ${this.name} </th> <th> ${this.email} </th> <th> ${this.studentId} </th>
+                    <th> ${this.coursesArray} </th>  </tr> `
+            }
+            addCourseToIfId(studentId,CourseId){
+                if(this.studentId===studentId){
+                    if(!this.coursesArray.includes(CourseId)){
+                        this.addNewCourse(CourseId);
+                    }
+                    
+                }
+            }
+        }
+        class Course {
+            constructor(name, courseId, studentArray = []) {
+                this.name = name;
+                this.courseId = courseId;
+                this.studentArray = studentArray;
+            }
+            haveCourseById(id) {
+                return this.courseId.includes(id);
+            }
+            haveID(id){
+                return this.courseId === id;
+            }
+        }
+        class College {
+            constructor(id, students = [], courses = [], avarageGrade = 0) {
+                this.id = id;
+                this.students = students;
+                this.courses = courses;
+                this.avarageGrade = avarageGrade;
+            }
+
+            addStudent(student) {
+                this.students.push(student);
+            }
+
+            addCourse(course) {
+                this.courses.push(course);
+            }
+            AddCourseById(studentId, CourseId) {
+                let havecourse =0;
+                for(let i of this.courses){
+                    if(i.haveID(CourseId)){
+                        havecourse=1;
+                        continue;
+                    }
+                }
+
+                if (havecourse) {
+                    for(let i of this.students){
+                        i.addCourseToIfId(studentId,CourseId);
+                    }
+                }
+            }
+            tableprint() {
+                // printline.innerHTML = `<p> Collage id : ${this.id} </p> `;
+                printline.innerHTML ='';
+                printline.innerHTML += `  <tr> <th> name </th>   <th> email </th>  <th> studentId </th>
+                    <th> courses </th> <tr> `;
+                for(let i of this.students){
+                    i.print1Student();
+                }
+                
+            }
+        }
+
+        const allcollege = new College(1);
+        const printline = document.getElementById('forstudent');
+
+        function newCourse(event) {
+            event.preventDefault();
+            let array = [];
+            const courseinputline = document.querySelectorAll('#courseinputs input');
+            for (const i of courseinputline) {
+                array.push(i.value)
+            }
+            // console.log(array);
+            let newcourse = new Course(array[0], array[1])
+            allcollege.addCourse(newcourse);
+            // console.log(allcollege);
+            
+        }
+
+        function newStudent(event) {
+            event.preventDefault();
+            let array1 = [];
+            const courseinputline = document.querySelectorAll('#studentinputs input');
+            for (const i of courseinputline) {
+                array1.push(i.value)
+            }
+            // console.log(array);
+            let newstudent = new Student(array1[0], array1[1], array1[2])
+            allcollege.addStudent(newstudent);
+            // console.log(allcollege);
+            allcollege.tableprint();
+        }
+
+        function addToStudentCourse(event) {
+            event.preventDefault();
+            const courseinputline = document.querySelectorAll('#addstudentcourse input');
+            let array = [];
+            for (const i of courseinputline) {
+                array.push(i.value)
+            }
+            allcollege.AddCourseById(array[0], array[1]);
+            console.log(allcollege);
+            allcollege.tableprint();
+        }
+    </script>
+</body>
+
+</html>

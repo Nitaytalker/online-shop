@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histograma</title>
+</head>
+<body>
+    <!-- קחו טקסט של לורל איפסום והדפיסו כמה פעמים כל אות חוזרת בו -->
+    <!-- צרו דף html שבו ניתן להזין טקסט בתיבת טקסט, ולחיצה על כפתור תתן תצוגה של כל אות ומספר החזרות שלה בטקסט -->
+
+    <section>
+        <div>
+            <input type="text">
+        </div>
+        <div>
+            <button>Histo me!</button>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <th>Char</th>
+                    <th>Count</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <script>
+
+        // Part 1 - print to the console
+
+        function print(counter, index) {
+            console.log(`Char ${String.fromCharCode(97+index)}, Count ${counter}`);
+        }
+
+        function histograma(text) {
+            var counters = new Array(26).fill(0);
+
+            text = text.toLowerCase();
+
+            for(var i = 0; i < text.length; i++){
+                var charCode = text.charCodeAt(i);
+                if(charCode >= 97 && charCode < 123){
+                    counters[charCode - 97]++;
+                }
+            }
+
+            return counters;
+        }
+
+        // var lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum minus quaerat, provident maiores soluta quam praesentium repellat vero voluptas aperiam natus. Sit cupiditate fugiat iusto voluptate culpa ea vitae illum.';
+        // var histo = histograma(lorem);
+        // histo.forEach(print);
+
+
+
+        //Part 2 - display histograma in HTML
+
+        var input = document.querySelector('input'),
+            button = document.querySelector('button'),
+            tbody = document.querySelector('tbody');    
+
+        function displayHistograma() {
+            var text = input.value;
+            var histo = histograma(text);
+
+            for(var i = 0; i < histo.length; i++){
+                tbody.innerHTML += `<tr><td>${String.fromCharCode(97+i)}</td><td>${histo[i]}</td></tr>`;
+            }
+        }
+        
+        button.addEventListener('click', displayHistograma);
+    </script>
+</body>
+</html>

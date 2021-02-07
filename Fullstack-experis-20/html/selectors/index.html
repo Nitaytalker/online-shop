@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <style>
+        /* tags */
+        body {
+            background-color: whitesmoke;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+        nav {
+            margin-left: 100px;
+        }
+        header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid gray;
+            background-color: gainsboro;
+        }
+
+        /* decendant selectors */
+        header figure {
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+            padding: 20px;
+        }
+
+        /* id selector */
+        #logo {
+            float: left;            
+        }
+
+        #logo img {
+            width: 36px;
+        }
+
+        main {
+            clear:left;            
+        }
+
+        /* class selectors */
+        .main-title {
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-decoration: underline;
+        }
+        .redish {
+            color: crimson;
+            font-weight: bold;
+        }
+
+        /* element with class  */
+        p.first-paragraph {
+            font-weight: bold;
+        }
+
+        /* pseudo class selectors */
+        h2:first-child {
+            text-decoration: underline;
+        }
+
+        article p:last-child {
+            border-bottom: 1px dotted blueviolet;
+        }
+
+        /* select div which is the first child of article */
+        article div:first-child {}
+        /* select all p which is a decendant of a div who's first child */
+        div:first-child p {}
+
+    </style>
+</head>
+<body>
+    <header>
+        <figure id="logo">
+            <img src="images/logo.jpg" alt="logo" title="My Bomba website logo">
+        </figure>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="main-title">Title</h1>
+        <article>
+            <h2>Article title</h2>
+            <p class="first-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eos excepturi, nam, placeat rerum distinctio obcaecati nisi laborum, enim laudantium quaerat sint qui natus cupiditate non error. Sapiente, porro ab.</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum odit, quia sequi corrupti ipsa quidem nam possimus doloremque a dolorem dignissimos aliquam suscipit laudantium? Doloribus nostrum eius ratione ipsam voluptate.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dignissimos quae maxime, temporibus autem eaque dicta accusantium, suscipit unde facilis illo animi esse officiis ipsam commodi! Ea atque ab rem!</p>
+        </article>
+        <article>
+            <h2>Article title</h2>
+            <p class="first-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eos excepturi, nam, placeat rerum distinctio obcaecati nisi laborum, enim laudantium quaerat sint qui natus cupiditate non error. Sapiente, porro ab.</p>
+            <p>Lorem ipsum dolor, <span class="redish">sit amet consectetur</span> adipisicing elit. Earum odit, quia sequi corrupti ipsa quidem nam possimus doloremque a dolorem dignissimos aliquam suscipit laudantium? Doloribus nostrum eius ratione ipsam voluptate.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dignissimos quae maxime, temporibus autem eaque dicta accusantium, suscipit unde facilis illo animi esse officiis ipsam commodi! Ea atque ab rem!</p>
+        </article>
+        <aside>
+            <section>
+                <span></span>
+                <h2>More options</h2>
+                <ul>
+                    <li>Option 1</li>
+                    <li>Option 2</li>
+                    <li>Option 3</li>
+                    <li>Option 4</li>
+                </ul>
+            </section>
+        </aside>
+    </main>
+    <footer>      
+        &copy; Copyright 2020
+    </footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groceries</title>
+</head>
+<body>
+    <h1>Groceries</h1>
+    <div>
+        <input type="text" placeholder="Enter grocery">
+        <button onclick="add()">Add</button>
+    </div>
+    <hr />
+    <div>
+        <h2>Groceries List</h2>
+        <ul></ul>
+        <button onclick="removeSelected()">Remove selected</button>
+    </div>
+    <script>
+        var groceries = [],
+            selected = [],
+            input = document.querySelector('input'),
+            ul    = document.querySelector('ul');
+
+        function toListItem(grocery) {
+            return `<li><input type="checkbox" onclick="toggle('${grocery}')" /> ${grocery} <button onclick="remove('${grocery}')">X</button></li>`;
+        }
+
+        function render() {
+            var listItems = groceries.map(toListItem);
+            ul.innerHTML = listItems.join('');
+        }
+
+        function add() {
+            //1 - add input value to groceries array
+            //2 - map those groceries to list items
+            //3 - set the list items to the ul innerHTML
+
+            if(!groceries.includes(input.value)){
+                groceries.push(input.value);
+            }else {
+                alert('Grocery already exists');
+            }
+
+            input.value = '';
+            
+            render();
+        }
+
+        function remove(grocery) {
+            //1 - locate the grocery
+            //2 - remove it from groceries
+            //3 - map the groceries to list items 
+            //4 - set the list items to the ul innerHTML
+
+            var index = groceries.indexOf(grocery);
+            groceries.splice(index, 1);
+
+            render();
+        }
+
+        function toggle(grocery) {
+            //1- add or remove from selected array
+            //   if not exist - add
+            //   if exist - remove
+            if(!selected.includes(grocery)){
+                selected.push(grocery);
+            }else {
+                selected.splice(selected.indexOf(grocery), 1);
+            }
+        }
+
+        function removeSelected() {
+            //1- iterate over selected array
+            //   for each grocery - remove it from groceries array
+            //2- render
+
+            for(var grocery of selected) {
+                groceries.splice(groceries.indexOf(grocery), 1);
+            }
+
+            render();
+        }
+    </script>
+</body>
+</html>

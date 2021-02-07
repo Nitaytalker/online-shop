@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Distance from</h1>
+    <div>
+        <label for="Country">Choose a Country:</label>
+        <select id="Country" name="Countrylist" form="Countryform">
+            <option value="0">Spain</option>
+            <option value="1">Thailand</option>
+            <option value="2">Netherlands</option>
+            <option value="3">Brazil</option>
+        </select>
+        <button onclick="GoToCountry()">OK</button>
+    </div>
+    <div id='nameCountry'>
+
+    </div>
+    <div id='Distancefrom'>
+        
+    </div>
+    <div id='Countrypic'>
+
+    </div>
+    <script>
+        const mycountry = [
+            {Country: 'Spain' , distance: '3614 km' , pic:"<img src= https://arttourism.co.il/wp-content/uploads/2018/01/2077-optimized.png> "},
+            {Country: 'Thailand' , distance: '6936 km' ,pic: "<img src= https://img.mako.co.il/2017/01/26/shutterstock_414322648_i.jpg>"},
+            {Country: 'Netherlands' , distance: '3372 km' ,pic: "<img src= https://blog.easygo.co.il/wp-content/uploads/2017/08/amsterdam-738x355.jpg>"},
+            {Country: 'Brazil' , distance: '10245 km' ,pic: "<img src= https://www.masa.co.il/MASA/_fck_uploads/brazil-rio(1).jpg>"}
+        ];
+        
+
+        
+
+        const nameCountryline =document.getElementById("nameCountry"),
+        Distancefromline =document.getElementById("Distancefrom"),
+        Countrypicline =document.getElementById("Countrypic");
+
+        function GoToCountry(){
+            let myvalue = document.getElementById('Country').value;
+            nameCountryline.innerHTML = mycountry[myvalue].Country;
+            Distancefromline.innerHTML = mycountry[myvalue].distance;
+            Countrypicline.innerHTML = mycountry[myvalue].pic;
+            
+        }
+    </script>
+</body>
+
+
+</html>

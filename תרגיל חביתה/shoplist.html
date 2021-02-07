@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(255, 145, 0);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        article {
+            background-color: white;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        footer {
+            padding: 10px;
+            text-align: left;
+            margin: 10px;
+            background-color: rgba(216, 191, 216, 0.507);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>רשימת קניות</h1>
+    <article>
+        <div>
+            <button onclick="addlist()">הוסף לסל</button>
+            <input type="text">
+
+        </div>
+        <div id='addlist'>
+
+        </div>
+        <div>
+            <button onclick="deleteItemsSelect()">מחיקה</button>
+        </div>
+    </article>
+    <script src="shoplist.js"></script>
+</body>
+
+</html>

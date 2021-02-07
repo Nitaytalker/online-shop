@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        section{
+            text-align: center;
+            margin: auto;
+        }
+        input {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>my image</h1>
+    <section>
+        <input type="image" onclick='toBigImg(`${src}`)' width="200" height="200"
+            src="https://i.pinimg.com/originals/c7/5c/28/c75c28559e048ecb2e0c232a374ebaa2.jpg">
+        <input type="image" onclick="toBigImg(`${src}`)" width="200" height="200"
+            src="https://logos-world.net/wp-content/uploads/2020/04/Barcelona-logo-2002-present.jpg">
+        <input type="image" onclick="toBigImg(`${src}`)" width="200" height="200"
+            src="https://logos-world.net/wp-content/uploads/2020/07/Atletico-Madrid-Symbol.jpg">
+    </section>
+    <section id='lineforbigimg'>
+
+    </section>
+    <script>
+
+        function toBigImg(link){
+            console.log(link);
+            document.querySelector('#lineforbigimg').innerHTML = ` <img src='${link}' > `;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <style>
+            #needwordinput{
+                color: red;
+            }
+            #neednuminput{
+                color: red;
+            }
+        </style>
+
+</head>
+
+<body>
+    <h1 class="text-center">input your word/s and Number</h1>
+    <h4 class="text-center">input your word</h4>
+    
+    <div class=" input-group mb-3  ">
+        <div class="col-4"></div>
+        <div class="input-group-prepend  mb-3 col-1">
+            <button onclick='addWord()' class="btn btn-outline-secondary" type="button" id="button-addon1">Add Word</button>
+        </div>
+        <input id='wordinput' type="text" class="form-control col-3" placeholder="" aria-label="Example text with button addon"
+            aria-describedby="button-addon1">
+            <p id='needwordinput'></p>
+    </div>
+    <h4 class="text-center">input your number between 2-5</h4>
+    <div class="input-group mb-3  text-center">
+        <div class="col-4"></div>
+        <div class="input-group-prepend col-1">
+            <button onclick="theNumber()" class="btn btn-outline-secondary" type="button" id="button-addon1">Add Number</button>
+        </div>
+        <input id='numberinput' type="number" class="form-control col-3" placeholder="" aria-label="Example text with button addon"
+            aria-describedby="button-addon1">
+            <p id='neednuminput'></p>
+    </div>
+    
+    <div class="text-center" id='outputtoher'>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+
+        <script>
+
+            const newword = document.getElementById('wordinput');
+            const arrayWord=[];
+            const errorword = document.getElementById('needwordinput');
+
+            function addWord(){
+                let wordAdd = newword.value;
+                if(wordAdd ===''){
+                    errorword.innerHTML='need input word';
+                    return;
+                }else{
+                    console.log(wordAdd);
+                    errorword.innerHTML='';
+                }
+                let pos = wordAdd.indexOf(" ");
+                console.log(pos);
+                let firstword =''
+                if(pos != -1){
+                    firstword = wordAdd.slice(0, pos);
+                }
+                else{
+                    firstword=wordAdd;
+                }
+                arrayWord.push(firstword);
+                // console.log(arrayWord);
+            }
+            
+            
+            const newnumber = document.getElementById('numberinput'),
+            printarea=document.getElementById('outputtoher'),
+            errornum = document.getElementById('neednuminput');
+
+            function theNumber(){
+                let myNumber = newnumber.value;
+                if(myNumber<2 || myNumber>5){
+                    errornum.innerHTML=' Number between 2 and 5 '
+                    return;
+                }
+                errornum.innerHTML='';
+                let wordprint ='';
+                printarea.innerHTML ='';
+                for(const word of arrayWord){
+                    for(let i=0 ; i < myNumber ; i++){
+                        wordprint += word;
+                    }
+                    printarea.innerHTML += `${wordprint} ,`;
+                    wordprint ='';
+                }
+            }
+
+
+        </script>
+
+</body>
+
+</html>

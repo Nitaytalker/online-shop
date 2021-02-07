@@ -1,0 +1,30 @@
+/* 1- Widen the 2 first columns: 100px and 200px */
+th:first-child {
+    width: 100px;
+}
+th:nth-child(2) {
+    width: 200px;
+}
+/* 2- Each even row should be colored gray */
+tr:nth-child(even) {
+  background-color: lightgray;
+}
+/* 3- Center the columns in the last 3 columns
+  n is a variable, starting with 0, incrementing by 1
+*/
+/* td:nth-child(n + 3) {
+  text-align: center;
+} */
+/* do the same, but now with :nth-last-child() */
+td:nth-last-child(-n + 3) {
+  text-align: center;
+}
+
+/* 4- make the last 2 rows italic */
+tr:nth-last-child(-n + 2) {
+    font-style: italic;
+}
+  /* 5- give th in table header a bluish color */
+thead {
+    background-color: lightsteelblue;
+}

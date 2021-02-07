@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        div{
+            text-align: center;
+            
+        }
+        body{
+            background-image: linear-gradient(to right, rgb(233, 236, 5), rgb(8, 8, 8));
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div id='inputline'>
+        <input id='numberinput' type='number'>
+        <button onclick='plusNumber()'>Click</button>
+        <button onclick='reset()'>reset</button>
+        <button onclick='sumOfNumbers()'>Sum All Numbers</button>
+
+    </div>
+    
+    <div id="sumline">
+
+    </div>
+
+    <div id="printnumtoher">
+
+    </div>
+
+    <script>
+
+        let goldenNumber = 1; //defult = 1
+        let firstint = 0;
+        let clicktime = 0;
+        const numlist = [];
+        const print = document.getElementById('printnumtoher');
+
+        function plusNumber() {
+            let inputnumber = document.getElementById('numberinput').value;
+            console.log(inputnumber);
+            if (clicktime == 0) {
+                if (goldenNumber == 1 && Number.isInteger(inputnumber)) {
+                    console.log('---');
+                    console.log(inputnumber);
+                    goldenNumber = inputnumber ;
+                    firstint = inputnumber;
+                }
+            }
+            clicktime++;
+            
+            if (firstint != inputnumber) {
+                firstint = inputnumber;
+                goldenNumber = inputnumber;
+            }
+            numlist.push(goldenNumber);
+            myprint(numlist);
+            goldenNumber++;
+        }
+
+        function myprint(numbers){
+            print.innerHTML = '';
+            let array = numlist.map(lineFormat);
+            for (let i = numlist.length - 1; i >= 0; i--) {
+                print.innerHTML += array[i];
+            }
+        }
+            
+        
+
+        function lineFormat(num){
+            return `<p> - ${num} </p>`;
+        }
+
+        function reset() {
+            print.innerHTML = '';
+            linetosum.innerHTML='';
+             goldenNumber = 1;
+            numlist.length = 0;
+            clicktime = 0;
+            firstint = 0;
+        }
+
+        const linetosum= document.getElementById('sumline');
+
+        function sumOfNumbers(){
+            let sum = 0;
+            for(let number of numlist){
+                sum=Number(sum)+Number(number);
+            }
+            linetosum.innerHTML = `Last sum click : ${sum}  ` ;
+            
+        }
+
+    </script>
+</body>
+
+</html>

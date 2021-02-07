@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+        }
+        h1 {
+            text-align: center;
+        }
+
+        section {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        input[onclick] {
+            width: 200px;
+            height: 200px;
+            padding: 0px 20px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gallery</h1>
+    <section>
+        <input id='newpic' type='text' placeholder="Your Image link" >
+        <button onclick="addNewPic()">add</button>
+
+    </section>
+    <section id='addpicline'>
+
+    </section>
+    <section id='addbuttonline'>
+
+    </section>
+    <section id='lineforbigimg'>
+
+    </section>
+    <script>
+
+        const linkpic = [];
+        let togo = 0;
+        let stupidbug = 0;
+
+
+        function addNewPic() {
+            let newlink = document.getElementById('newpic');
+            linkpic.push(newlink.value);
+
+            picPrint();
+        }
+        const forpicline = document.querySelector('#addpicline');
+        function picPrint() {
+            position = togo * 3;
+            if (position > linkpic.length) {
+                return;
+            }
+            let canprint = linkpic.length - position;
+            if (canprint > 3) {
+                canprint = 3;
+            }
+            document.querySelector('#addpicline').innerHTML = '';
+            for (let i = 0; i < canprint; i++) {
+                forpicline.innerHTML += ` <input type="image" onclick="toBigImg('${linkpic[position]}')" src='${linkpic[position]}' > `;
+                position++;
+            }
+            if (linkpic.length == 4 && stupidbug == 0) {
+                stupidbug = 1;
+                document.querySelector('#addbuttonline').innerHTML += `<button onclick='toPrev()' type="button">prev</button> <button onclick='toNext()' type="button">next</button>  `
+            }
+        }
+
+        function toPrev() {
+            togo--;
+            if (togo < 0) {
+                togo++;
+                return;
+            }
+            picPrint();
+        }
+
+        function toNext() {
+            togo++;
+            if (togo * 3 >= linkpic.length) {
+                togo--;
+                return;
+            }
+            picPrint();
+        }
+        const forimg = document.querySelector('#lineforbigimg');
+        function toBigImg(link) {
+            console.log(link);
+            forimg.innerHTML = ` <img src='${link}' width="400" height="400" > `;
+        }
+
+    </script>
+</body>
+
+</html>

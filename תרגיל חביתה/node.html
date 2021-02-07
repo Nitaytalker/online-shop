@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: medium;
+        }
+
+        body {
+            background-image: url('https://onlyboards.co.il/wp-content/uploads/2019/05/shaamframeboardzoombclear-2400x1600.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        #mytext {
+            height: 140px;
+            font-size: 14pt;
+        }
+
+        #mysearch {
+            margin: 10px;
+        }
+
+        #mybutton {
+            margin: 10px;
+        }
+
+        /* #newnode {
+            background-image: url('https://terrasafe.co.il/wp-content/uploads/2017/09/2325865367_13993ccdc7.jpg');
+            background-repeat: no-repeat;
+            float: left;
+            width: 10%;
+            padding: 120px;
+        } */
+    </style>
+</head>
+
+<body>
+   
+        <h1>Node</h1>
+        <div>
+            <input id='mysearch' type="search" value="search" size="30">
+        </div>
+        <div>
+            <input id='mytext' type="search" value="write text here..." maxlength="50" size="60">
+        </div>
+        <div>
+            <h2>DATE</h2>
+            <input id='mydate' type="date">
+        </div>
+        <div>
+            <h2>TIME</h2>
+            <input id='mytime' type="time">
+        </div>
+        <div>
+            <button onclick="addnode()" id='mybutton' type="button" >ADD NOTE </button>
+        </div>
+        <div id='node'>
+            <p id="newnode"></p>
+        </div>
+    
+    <script>
+
+        function addnode() {
+            var text= document.getElementById('mytext').value;
+            var date  =document.getElementById('mydate').value;
+            var time = document.getElementById('mytime').value;
+            const element = ` ${text} 
+            ${date}
+            ${time} `;
+            document.body.innerHTML +=  element;
+
+
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

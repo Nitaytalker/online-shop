@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gallery</title>
+</head>
+<body>
+    <header>
+        <h1>Lamma Gallery?</h1>
+    </header>
+    <main>
+        <section>
+            <input type="text" id="newImage"><button onclick="addImage()">Add New Image Address</button>
+        </section>
+        <section id="gallery">
+            
+        </section>
+        <section>
+            <button onclick="prev()">Prev</button>
+            <button onclick="next()">Next</button>
+        </section>
+        <section id="naturalImage">
+
+        </section>
+    </main>
+
+
+
+    <script>
+        const images = [
+            "https://i.ytimg.com/vi/DwlYU2G4_rY/hqdefault.jpg",
+            "https://tse4.mm.bing.net/th?id=OIP._mVdgYXstijI1PTTwNCxNAAAAA&pid=Api&P=0&w=261&h=177",
+            "http://puppybunnyguineapretty.files.wordpress.com/2010/02/lamma-kisses.jpg",
+            "https://scottandsoonjeong.files.wordpress.com/2011/04/uyuni_lamma_type_animals.jpg?w=300&h=199",
+            // "https://www.samsays.com/Images/Lamma%20Island%20map.gif",
+            // "https://thumbs.dreamstime.com/t/lamma-island-hong-kong-one-resort-islands-32311015.jpg",
+            // "http://www.hkkf.com.hk/img/common/lamma/lamma_map.jpg"
+        ],
+            displayImages = [];
+        
+        let galleryIndex = 0;
+
+        const gallery = document.querySelector('#gallery'),
+              naturalImage = document.querySelector('#naturalImage'),
+              newImage = document.querySelector('#newImage');
+
+
+        function toImage(src) {
+            return `<img src="${src}" alt="${src}">`;
+        }
+
+        function setDisplayImages() {
+            //Clear displayImages
+            displayImages.length = 0;
+            let counter = 0;
+
+            for(let i = galleryIndex; i < images.length && counter < 3; i++, counter++) {
+                displayImages.push(images[i]);
+            }
+            
+            return displayImages.map(toImage);
+        }
+
+        function render() {
+            //1- map displayImages strings to <img src="bla bla" alt="bla bla"> strings
+            //2- change innerHTML of the gallery to be result of the mapping
+
+            const mappedImages = setDisplayImages();
+
+            gallery.innerHTML = mappedImages.join('');
+        }
+
+        function next() {
+            if(galleryIndex + 3 < images.length) { 
+                galleryIndex = galleryIndex + 3;
+                render();
+            }            
+        }
+
+        function prev() {
+            if(galleryIndex - 3 >= 0) { 
+                galleryIndex = galleryIndex - 3;
+                render();
+            }            
+        }
+
+        function addImage() {
+            if(newImage.value) {
+                images.push(newImage.value);
+                newImage.value = '';
+            }
+        }
+
+        render();
+    </script>
+    
+</body>
+</html>
+

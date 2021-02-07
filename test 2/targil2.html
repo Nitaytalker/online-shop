@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Word subsets</h1>
+    <input id='wordinput' type='text' class="form-control" placeholder="" >
+    <button onclick='subsets()'>OK</button>
+    <ol id='foroutput'>
+
+    </ol>
+
+    <script>
+
+
+        const wordinput = document.getElementById('wordinput'),
+        outline = document.getElementById('foroutput');
+
+        function subsets(word) {
+            word = wordinput.value;
+            const array = [];
+            let originalLength = word.length;
+            let strpush = '';
+            for (let i = 0; i < word.length; i++) {
+                strpush += word[i];
+                array.push(strpush);
+            }
+            strpush = '';
+            for (let j = word.length; j > 0; j--) {
+                for (let i = j - 1; i > 0; i--) {
+                    strpush += word[i];
+                    array.push(strpush);
+                }
+                strpush = '';
+            }
+            outline.innerHTML ='';
+            for(let i of array){
+                outline.innerHTML += `<li> ${i} </li>   `
+            }
+
+           
+
+        }
+    </script>
+</body>
+
+</html>

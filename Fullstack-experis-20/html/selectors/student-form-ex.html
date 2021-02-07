@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      h1 {
+        color: blue;
+        text-align: center;
+      }
+
+      form {
+        border: 1px dashed blue;
+        padding: 20px;
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      form label {
+        display: inline-block;
+        margin-left: 40px;
+        width: 100px;
+      }
+
+      /* '>' means direct decendant/child */
+      form > div {
+        margin-bottom: 20px;
+      }
+
+      /* input#btnSubmit { */
+      input[type="submit"] {
+        width: 100%;
+        font-size: 1.5rem;
+        color: red;
+        font-weight: bold;
+        margin-top: 20px;
+        text-transform: uppercase;
+      }
+
+      .error {
+        color: red;
+        display: block;
+        margin-left: 145px;
+        font-size: smaller;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .btn {
+        color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div>
+        <h1>Add Student Details</h1>
+      </div>
+      <div>
+        <form>
+          <div>
+            <label for="txtName">Name</label>
+            <input type="text" name="username" id="txtName" />
+            <span class="error hidden">Name is too short</span>
+          </div>
+          <div>
+            <label for="txtAge">Age (<span id="ageValue">70</span>)</label>
+            <input
+              type="range"
+              name="age"
+              min="18"
+              max="120"
+              value="70"
+              oninput="ageValue.innerText = this.value"
+            />
+          </div>
+          <div>
+            <label for="txtPhone">Phone</label>
+            <input type="phone" />
+          </div>
+          <div>
+            <label for="txtEmail">Email</label>
+            <input type="email" />
+            <span class="error hidden">Email is incorrect</span>
+          </div>
+          <div>
+            <label for="txtDOB">Birth Date</label>
+            <input type="date" />
+          </div>
+          <div>
+            <label for="radioGender">Gender</label>
+            <input type="radio" name="gender" value="F" />Female
+            <input type="radio" name="gender" value="M" />Male
+          </div>
+          <div>
+            <label for="lstCourse">Course</label>
+            <select>
+              <option value="">Select Course</option>
+              <option value="1">Math</option>
+              <option value="2">Computers</option>
+              <option value="3">Philosophy</option>
+              <option value="4">Buddhism</option>
+            </select>
+            <span class="error hidden">Please select a course</span>
+          </div>
+          <div>
+            <input id="btnSubmit" type="submit" value="save!" />
+          </div>
+        </form>
+      </div>
+      <div>
+        <h1>My Website &copy;2020</h1>
+      </div>
+    </div>
+
+    <script>
+      //1- get the submit button reference
+      var btnSubmit = document.querySelector("input#btnSubmit");
+
+      function onSumbitClick(e) {
+        e.preventDefault();
+        console.log(e.target);
+        //3- alert the name input value
+        // 3.1- get the name input reference
+        var nameInput = document.querySelector("input[name=username]"),
+            emailInput = document.querySelector('input[type="email"]'),
+            course = document.querySelector('select');
+
+        if (nameInput.value.length < 2) {
+          // alert('Name\'s too short');
+          nameInput.style.border = '2px solid red';
+          nameInput.nextElementSibling.classList.remove('hidden');
+        }
+        if(!emailInput.value.includes('@')){
+          // alert('Email is invalid');
+          emailInput.style.border = '2px solid red';
+          emailInput.nextElementSibling.classList.remove('hidden');
+        }
+        if(!course.value){
+          // alert('Please select a course');
+          course.style.border = '2px solid red';
+          course.nextElementSibling.classList.remove('hidden');
+        }
+        
+          // alert(nameInput.value);        
+      }
+
+      //2 - add my function to the onclick event
+      btnSubmit.addEventListener("click", onSumbitClick);
+    </script>
+  </body>
+</html>
